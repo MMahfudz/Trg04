@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry and Display</title>
+</head>
+<body>
+    <h1>Data Entry and Display</h1>
+   
+    <!-- Form for data entry -->
+    <form id="dataEntryForm">
+        <label for="dataInput">Enter Data:</label>
+        <input type="text" id="dataInput" name="dataInput">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display section -->
+    <div id="displaySection">
+        <h2>Stored Data:</h2>
+        <ul id="dataList"></ul>
+    </div>
+
+    <script>
+        // Function to handle form submission
+        document.getElementById("dataEntryForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Get input value
+            var newData = document.getElementById("dataInput").value;
+            // Retrieve existing data from localStorage or initialize as empty array
+            var storedData = JSON.parse(localStorage.getItem("storedData")) || [];
+            // Add new data to the array
+            storedData.push(newData);
+            // Save updated array back to localStorage
+            localStorage.setItem("storedData", JSON.stringify(storedData));
+            // Clear input field
+            document.getElementById("dataInput").value = "";
+            // Update displayed data
+            displayData();
+        });
+
+        // Function to display stored data
+        function displayData() {
+            var dataList = document.getElementById("dataList");
+            dataList.innerHTML = "";
+            var storedData = JSON.parse(localStorage.getItem("storedData")) || [];
+            storedData.forEach(function(data) {
+                var li = document.createElement("li");
+                li.textContent = data;
+                dataList.appendChild(li);
+            });
+        }
+
+        // Initial display of stored data
+        displayData();
+    </script>
+</body>
+</html>
+
+<!--This HTML code includes a form where users can enter data, a section to display the stored data, and JavaScript code to handle form submission, store data locally using localStorage, and display the stored data on the page.  -->
