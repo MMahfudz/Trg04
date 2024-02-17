@@ -26,11 +26,9 @@ function signIn(event) {
   var password = document.getElementById('password').value;
   
   // Check if username and password are correct
-  if (username === 'S1234567D' && password === 'P@55w0rd1') {
-    alert('Sign in successful!');
-    
+  if (username === 'S1234567D' && password === 'Password1') {
+    alert('Sign in successful!'); window.location.href = "home.html";
     // You can redirect the user or do any other action here
-   window.location.href = "home.html";
   } else {
     alert('Invalid username or password. Please try again.');
   }
